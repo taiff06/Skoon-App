@@ -1,5 +1,6 @@
 import SwiftUI
 import AVFoundation
+import UserNotifications
 
 struct ContentView: View {
     @State private var count = 0
@@ -73,9 +74,20 @@ struct ContentView: View {
         .onAppear {
             // Start the timer when the view appears
             startTimer()
+            
+            requestNotificationAuthorization()
         }
         }
     }
+    func requestNotificationAuthorization() {
+          UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+              if granted {
+                  print("Notification authorization granted")
+              } else {
+                  print("Notification authorization denied")
+              }
+          }
+      }
 
     func startTimer() {
         // Start a timer to check for inactivity every 10 seconds
@@ -95,6 +107,24 @@ struct ContentView: View {
         // Invalidate the existing timer and start a new one
         timer?.invalidate()
         startTimer()
+        
+        
+        let content = UNMutableNotificationContent()
+           content.title = "Inactivity Alert"
+           content.body = "You haven't tapped in a while."
+
+           let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 8, repeats: false)
+
+           let request = UNNotificationRequest(identifier: "inactivityNotification", content: content, trigger: trigger)
+
+           UNUserNotificationCenter.current().add(request) { error in
+               if let error = error {
+                   print("Error scheduling notification: \(error.localizedDescription)")
+               } else {
+                   print("Notification scheduled successfully")
+               }
+           }
+
     }
 
     func speakTapsCount() {
@@ -103,6 +133,7 @@ struct ContentView: View {
         speechSynthesizer.speak(utterance)
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
