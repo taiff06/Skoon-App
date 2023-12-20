@@ -1,24 +1,111 @@
-//
-//  ContentView.swift
-//  Skoon Watch App
-//
-//  Created by taif on 19/12/2023.
-//
-
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
+    @State private var count = 0
+    @State private var showingResetConfirmation = false
+    @State private var lastTapTime = Date()
+    @State private var speechSynthesizer = AVSpeechSynthesizer()
+    @State private var timer: Timer?
+    @State private var hasSpoken = false
+
     var body: some View {
+        
+        ZStack{
+            
+    Image("thkr1") // Replace "yourImageName" with your image asset name
+        .resizable()
+        .aspectRatio(contentMode: .fill)
+        .edgesIgnoringSafeArea(.all)
+            
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            Spacer().frame(height: 20)
+            Text("Number of counts:")
+                .font(.subheadline)
+                .padding(.trailing, 40)
+       
+            Button(action: {
+                // Increment the count when the button is tapped
+                count += 1
+                // Update the last tap time
+                lastTapTime = Date()
+                // Cancel the existing speech if any
+                speechSynthesizer.stopSpeaking(at: .immediate)
+                // Reset the timer
+                resetTimer()
+                // Reset the spoken flag
+                hasSpoken = false
+            }) {
+                Text(" \(count)")
+                    .font(.title)
+                    .padding()
+                //.background(Color.black)
+                .foregroundColor(.white)
+                    .cornerRadius(10)
+            }.background(Color.black).cornerRadius(70)
+            
+            Button(action: {
+                // Show the reset confirmation dialog
+                showingResetConfirmation = true
+            }) {
+                Text("Start Again")
+                    .font(.subheadline)
+                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                   // .background(Color.red)
+                    .foregroundColor(.white)
+                    .cornerRadius(8)
+            }.background(Color.black).cornerRadius(70)
+            .alert(isPresented: $showingResetConfirmation) {
+                Alert(
+                    title: Text("Do you want to reset your counting ?"),
+                    message: Text(""),
+                    primaryButton: .default(Text("Yes")) {
+                        // Reset the count when the user clicks "Yes"
+                        count = 0
+                    },
+                    secondaryButton: .cancel(Text("No"))
+                )
+            }
+            
+            Spacer()
         }
-        .padding()
+        .onAppear {
+            // Start the timer when the view appears
+            startTimer()
+        }
+        }
+    }
+
+    func startTimer() {
+        // Start a timer to check for inactivity every 10 seconds
+        timer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { timer in
+            // Calculate the time elapsed since the last tap
+            let timeSinceLastTap = Date().timeIntervalSince(self.lastTapTime)
+            if timeSinceLastTap >= 10 && !self.hasSpoken {
+                // Speak out the number of taps
+                self.speakTapsCount()
+                // Set the flag to avoid repeated speaking
+                self.hasSpoken = true
+            }
+        }
+    }
+
+    func resetTimer() {
+        // Invalidate the existing timer and start a new one
+        timer?.invalidate()
+        startTimer()
+    }
+
+    func speakTapsCount() {
+        let utterance = AVSpeechUtterance(string: "You have tapped \(count) times.")
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        speechSynthesizer.speak(utterance)
     }
 }
 
-#Preview {
-    ContentView()
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
