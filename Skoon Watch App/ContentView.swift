@@ -4,79 +4,87 @@ import UserNotifications
 
 struct ContentView: View {
     @State private var count = 0
-    @State private var showingResetConfirmation = false
+    @State private var resetConfirmation = false
     @State private var lastTapTime = Date()
     @State private var speechSynthesizer = AVSpeechSynthesizer()
     @State private var timer: Timer?
     @State private var hasSpoken = false
-
+    
     var body: some View {
-        
+ 
         ZStack{
             
-    Image("thkr1") // Replace "yourImageName" with your image asset name
-        .resizable()
-        .aspectRatio(contentMode: .fill)
-        .edgesIgnoringSafeArea(.all)
+            Image("thkr1") // Replace "yourImageName" with your image asset name
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .edgesIgnoringSafeArea(.all)
             
-        VStack {
-            
-            Spacer().frame(height: 20)
-            Text("Number of counts:")
-                .font(.subheadline)
-                .padding(.trailing, 40)
-       
-            Button(action: {
-                // Increment the count when the button is tapped
-                count += 1
-                // Update the last tap time
-                lastTapTime = Date()
-                // Cancel the existing speech if any
-                speechSynthesizer.stopSpeaking(at: .immediate)
-                // Reset the timer
-                resetTimer()
-                // Reset the spoken flag
-                hasSpoken = false
-            }) {
-                Text(" \(count)")
-                    .font(.title)
-                    .padding()
-                //.background(Color.black)
-                .foregroundColor(.white)
-                    .cornerRadius(10)
-            }.background(Color.black).cornerRadius(70)
-            
-            Button(action: {
-                // Show the reset confirmation dialog
-                showingResetConfirmation = true
-            }) {
-                Text("Start Again")
-                    .font(.subheadline)
-                    .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
-                   // .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(8)
-            }.background(Color.black).cornerRadius(70)
-            .alert(isPresented: $showingResetConfirmation) {
+            VStack {
+                
+                Spacer().frame(height: 38)
+                Text("Number of counts:")
+                    .font(.caption2)
+                    .padding(.trailing, 4)
+                
+                Button(action: {
+                    // Increment the count when the button is tapped
+                    count += 1
+                    // Update the last tap time
+                    lastTapTime = Date()
+                    // Cancel the existing speech if any
+                    speechSynthesizer.stopSpeaking(at: .immediate)
+                    // Reset the timer
+                    resetTimer()
+                    // Reset the spoken flag
+                    hasSpoken = false
+                }) {
+                    Text(" \(count)")
+                        .font(.title)
+                        .padding()
+                    //.background(Color.black)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }.background(Color.black).cornerRadius(70)
+                
+                Button(action: {
+                    // Show the reset confirmation dialog
+                 
+                    resetConfirmation = true
+                }) {
+                    Text("Start Again")
+                        .font(.subheadline)
+                        .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
+                    // .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(8)
+                }.background(Color.black)
+                .cornerRadius(70)
+      
+                   
+                Spacer()
+            }.alert(isPresented: $resetConfirmation) {
                 Alert(
                     title: Text("Do you want to reset your counting ?"),
                     message: Text(""),
                     primaryButton: .default(Text("Yes")) {
                         // Reset the count when the user clicks "Yes"
                         count = 0
+                        // Additional actions you want to perform when resetting
+                        hasSpoken = false
+                        lastTapTime = Date()
+                        resetTimer()
                     },
                     secondaryButton: .cancel(Text("No"))
+                    
+                    
                 )
             }
-            
-            Spacer()
-        }
-        .onAppear {
-            // Start the timer when the view appears
-            startTimer()
-            
-            requestNotificationAuthorization()
-        }
+            .onAppear {
+                // Start the timer when the view appears
+                startTimer()
+                requestNotificationAuthorization()
+                resetConfirmation = false
+            }
         }
     }
     func requestNotificationAuthorization() {

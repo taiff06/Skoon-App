@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1A7A2EA2B32E14100B87D2F /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A7A2E92B32E14100B87D2F /* Menu.swift */; };
 		B1BAA11F2B318FFA00EB44DD /* Skoon Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B1BAA11E2B318FFA00EB44DD /* Skoon Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1BAA1242B318FFA00EB44DD /* SkoonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAA1232B318FFA00EB44DD /* SkoonApp.swift */; };
 		B1BAA1262B318FFA00EB44DD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAA1252B318FFA00EB44DD /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B1A7A2E92B32E14100B87D2F /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		B1BAA1182B318FFA00EB44DD /* Skoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BAA11E2B318FFA00EB44DD /* Skoon Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skoon Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BAA1232B318FFA00EB44DD /* SkoonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkoonApp.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				B1BAA1232B318FFA00EB44DD /* SkoonApp.swift */,
 				B1BAA1252B318FFA00EB44DD /* ContentView.swift */,
+				B1A7A2E92B32E14100B87D2F /* Menu.swift */,
 				B1BAA1272B318FFB00EB44DD /* Assets.xcassets */,
 				B1BAA1292B318FFB00EB44DD /* Preview Content */,
 			);
@@ -192,6 +195,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1A7A2EA2B32E14100B87D2F /* Menu.swift in Sources */,
 				B1BAA1262B318FFA00EB44DD /* ContentView.swift in Sources */,
 				B1BAA1242B318FFA00EB44DD /* SkoonApp.swift in Sources */,
 			);
