@@ -1,31 +1,22 @@
 
-
-
 import SwiftUI
 import AVFoundation
 import UserNotifications
 import Foundation
-//
-//  CardButtonView.swift
-//  counter3 Watch App
-//
-//  Created by taif on 21/12/2023.
-//
 
-import SwiftUI
-
+struct Card: Identifiable {
+    let id = UUID()
+    let title: String
+    let color: Color
+}
 struct Menu: View {
-    let cardData = [
-        ("Subhan Allah", Color.grey),
-        ("Astaghfirullah", Color.grey),
-        ("Alhamdulillah", Color.grey)
+    let cards: [Card] = [
+        Card(title: "Subhan Allah", color: .grey),
+        Card(title: "Astaghfirullah", color: .grey),
+        Card(title: "Alhamdulillah", color: .grey),
+        // Add more cards as needed
     ]
-
-    @State private var currentIndex = 0
-    @State private var offset: CGFloat = 0
-    let cardWidth: CGFloat = 150 // Adjust the card width as needed
-    let cardSpacing: CGFloat = 30 // Adjust the spacing between cards
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -33,50 +24,49 @@ struct Menu: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .edgesIgnoringSafeArea(.all)
+                
+                VStack {
+                    Spacer().frame(height: 20)
+                    Text("The Daily Rosary")
+                        .font(.body)
+                        .padding(.trailing, 40)
+                    
+                    ScrollView(.horizontal) {
+                        
+                        HStack(spacing: 50){
+                          //  Spacer().frame(width: 100)
+                            ForEach(cards) { card in
+                                NavigationLink(destination: ContentView()) {
+                                    
+                                    CardView(card: card)
+                                }.frame(width: 180, height: 180).padding([.leading, .bottom])
+                            }
+                        }
+                    }
+                    
 
-                ForEach(cardData.indices, id: \.self) { index in
-                    CardButton(title: cardData[index].0, color: cardData[index].1)
-                        .frame(width: cardWidth)
-                        .offset(x: offset + CGFloat(index - currentIndex) * (cardWidth + cardSpacing))
-                        .animation(.spring())
-                        .gesture(
-                            DragGesture()
-                                .onChanged { gesture in
-                                    offset = gesture.translation.width
-                                }
-                                .onEnded { gesture in
-                                    let newIndex = Int((offset + gesture.translation.width) / (cardWidth + cardSpacing))
-                                    currentIndex = max(0, min(currentIndex - newIndex, cardData.count - 1))
-                                    withAnimation {
-                                        offset = 0
-                                    }
-                                }
-                        )
                 }
             }
         }
     }
 }
 
-struct CardButton: View {
-    let title: String
-    let color: Color
-
+struct CardView: View {
+    let card: Card
+    
     var body: some View {
-        NavigationLink(destination: ContentView()) {
-            VStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .frame(width: 150, height: 150)
-                    .foregroundColor(color)
-                    .overlay(
-                        Text(title)
-                            .foregroundColor(.white)
-                    )
-            } .frame(width: 80 , height: 80)
-            .padding(.trailing, 0) // Adjust the padding as needed
-        }
+        RoundedRectangle(cornerRadius: 40)
+            .frame(width: 180, height: 180)
+            .foregroundColor(card.color)
+            .overlay(
+                Text(card.title)
+                    .foregroundColor(.white)
+            )
+    
     }
 }
+
+
 
 struct Menu_Previews: PreviewProvider {
     static var previews: some View {
