@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B15958582B382B5400FA8559 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B159585B2B382B5400FA8559 /* Localizable.strings */; };
+		B15958592B382B5400FA8559 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B159585B2B382B5400FA8559 /* Localizable.strings */; };
 		B1A7A2EA2B32E14100B87D2F /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1A7A2E92B32E14100B87D2F /* Menu.swift */; };
 		B1BAA11F2B318FFA00EB44DD /* Skoon Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = B1BAA11E2B318FFA00EB44DD /* Skoon Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1BAA1242B318FFA00EB44DD /* SkoonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BAA1232B318FFA00EB44DD /* SkoonApp.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B159585A2B382B5400FA8559 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B159585C2B382B5500FA8559 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B1A7A2E92B32E14100B87D2F /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		B1BAA1182B318FFA00EB44DD /* Skoon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skoon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1BAA11E2B318FFA00EB44DD /* Skoon Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Skoon Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +86,7 @@
 			children = (
 				B1BAA1232B318FFA00EB44DD /* SkoonApp.swift */,
 				B1BAA1252B318FFA00EB44DD /* ContentView.swift */,
+				B159585B2B382B5400FA8559 /* Localizable.strings */,
 				B1A7A2E92B32E14100B87D2F /* Menu.swift */,
 				B1BAA1272B318FFB00EB44DD /* Assets.xcassets */,
 				B1BAA1292B318FFB00EB44DD /* Preview Content */,
@@ -159,6 +164,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = B1BAA1112B318FFA00EB44DD;
 			productRefGroup = B1BAA1192B318FFA00EB44DD /* Products */;
@@ -176,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B15958582B382B5400FA8559 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1BAA12B2B318FFB00EB44DD /* Preview Assets.xcassets in Resources */,
+				B15958592B382B5400FA8559 /* Localizable.strings in Resources */,
 				B1BAA1282B318FFB00EB44DD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -210,6 +218,18 @@
 			targetProxy = B1BAA1202B318FFA00EB44DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B159585B2B382B5400FA8559 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B159585A2B382B5400FA8559 /* en */,
+				B159585C2B382B5500FA8559 /* ar */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B1BAA12C2B318FFB00EB44DD /* Debug */ = {

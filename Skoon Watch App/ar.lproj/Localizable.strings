@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Skoon
+
+  Created by taif on 24/12/2023.
+  
+*/
+
+"Number" = "عدد التسبيحات";
+"Subhan Allah1" = "سبحان الله";
+"Astaghfirullah1" = "استغفرالله";
+"Alhamdulillah1" = "الحمدلله" ;
+"The Daily Rosary1" = "الاذكار" ;
+"Start Again1" = "ابدا من جديد";
+"Do you want to reset your counting ?1" = "هل انت متاكد من اعادة التسبيح ؟" ;
+"Yes1" = "نعم";
+"No1" = "لا";

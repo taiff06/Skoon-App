@@ -11,9 +11,9 @@ struct Card: Identifiable {
 }
 struct Menu: View {
     let cards: [Card] = [
-        Card(title: "Subhan Allah", color: .grey),
-        Card(title: "Astaghfirullah", color: .grey),
-        Card(title: "Alhamdulillah", color: .grey),
+        Card(title: NSLocalizedString("Subhan Allah1", comment: ""), color: .grey),
+        Card(title: NSLocalizedString("Astaghfirullah1", comment: "") , color: .grey),
+        Card(title: NSLocalizedString("Alhamdulillah1", comment: ""), color: .grey),
         // Add more cards as needed
     ]
     
@@ -27,7 +27,7 @@ struct Menu: View {
                 
                 VStack {
                     Spacer().frame(height: 20)
-                    Text("The Daily Rosary")
+                    Text("The Daily Rosary1")
                         .font(.body)
                         .padding(.trailing, 40)
                     

@@ -1,15 +1,19 @@
+
+
+
 import SwiftUI
 import AVFoundation
 import UserNotifications
 
 struct ContentView: View {
+    
     @State private var count = 0
     @State private var resetConfirmation = false
     @State private var lastTapTime = Date()
     @State private var speechSynthesizer = AVSpeechSynthesizer()
     @State private var timer: Timer?
     @State private var hasSpoken = false
-    
+   
     var body: some View {
  
         ZStack{
@@ -22,7 +26,7 @@ struct ContentView: View {
             VStack {
                 
                 Spacer().frame(height: 38)
-                Text("Number of counts:")
+                Text("Number")
                     .font(.caption2)
                     .padding(.trailing, 4)
                 
@@ -51,7 +55,7 @@ struct ContentView: View {
                  
                     resetConfirmation = true
                 }) {
-                    Text("Start Again")
+                    Text("Start Again1")
                         .font(.subheadline)
                         .padding(EdgeInsets(top: 5, leading: 10, bottom: 5, trailing: 10))
                     // .background(Color.red)
@@ -64,9 +68,9 @@ struct ContentView: View {
                 Spacer()
             }.alert(isPresented: $resetConfirmation) {
                 Alert(
-                    title: Text("Do you want to reset your counting ?"),
+                    title: Text("Do you want to reset your counting ?1"),
                     message: Text(""),
-                    primaryButton: .default(Text("Yes")) {
+                    primaryButton: .default(Text("Yes1")) {
                         // Reset the count when the user clicks "Yes"
                         count = 0
                         // Additional actions you want to perform when resetting
@@ -74,7 +78,7 @@ struct ContentView: View {
                         lastTapTime = Date()
                         resetTimer()
                     },
-                    secondaryButton: .cancel(Text("No"))
+                    secondaryButton: .cancel(Text("No1"))
                     
                     
                 )
